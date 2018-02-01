@@ -6,8 +6,9 @@ machine:
     version: 8.1.2
 
 environment:
-  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/palettepicker_test
+  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/publications
 
 database:
   override:
+    - sudo -u postgres psql -p 5432 -c "create database publications;"
     - knex migrate:latest
