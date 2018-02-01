@@ -6,13 +6,19 @@ machine:
     version: 8.1.2
 
 environment:
-  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/publications
+  DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/palettepicker_test
 
 database:
   override:
-    - sudo -u postgres psql -p 5432 -c "create database publications;"
+    - sudo -u postgres psql -p 5432 -c "create database palettepicker_test;"
     - knex migrate:latest
 
 test:
   override:
     - mocha --exit
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: palettepicker-jason-hughes
